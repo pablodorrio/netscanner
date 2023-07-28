@@ -16,7 +16,7 @@ def request_response(url: str) -> None:
         url (str): URL to send the request.
     """
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=5)
         if response.status_code == 200:
             print(f"[+] Found directory: {url}")
     except requests.exceptions.ConnectionError:
@@ -52,7 +52,7 @@ def dir_fuzzer(ip: str, http: bool = False, https: bool = False) -> None:
     readline.parse_and_bind("tab: complete")
     dictionary = input("  Enter a path to a wordlist: ")
 
-    with open(dictionary, "r") as wordlist:
+    with open(dictionary, "r", encoding="utf-8") as wordlist:
         print("\033[1;31m" + "\n[*] Fuzzing directories..." + "\033[0m")
 
         for word in wordlist:
