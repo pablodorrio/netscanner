@@ -20,7 +20,6 @@ def scan_ports(ip: str) -> bool:
     """
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     established = False
-    #service = None
 
     for port in range(1, 65535):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
@@ -41,3 +40,38 @@ def scan_ports(ip: str) -> bool:
                     print(f"{port}/tcp".ljust(9), "open\t", "unknown")
             except:
                 pass
+
+    return established
+
+
+def check_http_https(ip: str) -> None:
+    """Check if the host is listening on ports 80 and 443.
+
+    Args:
+        ip (str): Host IP.
+    """
+    if not 80 in open_ports or not 443 in open_ports:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+            try:
+                if 80 not in open_ports:
+                    connect_to_port(ip, 80)
+                if 443 not in open_ports:
+                    connect_to_port(ip, 443)
+            except:
+                pass
+
+
+def connect_to_port(ip: str, port: int) -> None:
+    """Connect to a port and if it is open, add it to the list of open ports.
+
+    Args:
+        ip (str): Host IP.
+        port (int): Port number.
+    """
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+        try:
+            client_socket.settimeout(0.5)
+            client_socket.connect((ip, port))
+            open_ports.append(port)
+        except:
+            pass

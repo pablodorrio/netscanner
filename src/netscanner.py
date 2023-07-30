@@ -40,10 +40,4 @@ if __name__ == "__main__":
 
     ip = target_ip()
     icmp_trace(ip)
-    established = scan_ports(ip)
-
-    if not established:
-        print(f"{ip} is not listening on any port")
-        exit()
-
     menu(ip)
