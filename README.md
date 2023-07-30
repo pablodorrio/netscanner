@@ -2,6 +2,12 @@
   <img src="./images/preview.png"/>
 </p>
 
+## Description
+
+Easy-to-use auditing tool for performing network scans and identifying
+potential vulnerabilities. With this tool you can discover the target
+operating system, scan ports and perform subdomain discovery.
+
 ## Installation
 
 ```bash
