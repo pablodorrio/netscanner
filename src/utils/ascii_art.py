@@ -2,6 +2,10 @@
 
 Author:
    Pablo Dorrio Vazquez (@pablodorrio)
+
+   ASCII art from:
+      https://oldcompcz.github.io/jgs/joan_stark/
+
 """
 
 ART = [
@@ -26,10 +30,14 @@ ART = [
                    \        /
                     :-'""'-:
                  .-'  ____  `-.
-                ( (  (_"""+"\033[1;31m"+"""()"""+"\033[0m"+"""_)  ) )
+                ( (  (_"""
+    + "\033[1;31m"
+    + """()"""
+    + "\033[0m"
+    + """_)  ) )
                  `-.   ^^   .-'
                     `._==_.'
-                jgs  __)(___"""
+                jgs  __)(___""",
 ]
 
 NAME = """
