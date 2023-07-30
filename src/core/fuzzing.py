@@ -52,14 +52,17 @@ def dir_fuzzer(ip: str, http: bool = False, https: bool = False) -> None:
     readline.parse_and_bind("tab: complete")
     dictionary = input("  Enter a path to a wordlist: ")
 
-    with open(dictionary, "r", encoding="utf-8") as wordlist:
-        print("\033[1;31m" + "\n[*] Fuzzing directories..." + "\033[0m")
+    try:
+        with open(dictionary, "r", encoding="utf-8") as wordlist:
+            print("\033[1;31m" + "\n[*] Fuzzing directories..." + "\033[0m")
 
-        for word in wordlist:
-            word = word.strip()
-            if http:
-                url = f"http://{ip}/{word}"
-                request_response(url)
-            if https:
-                url = f"https://{ip}/{word}"
-                request_response(url)
+            for word in wordlist:
+                word = word.strip()
+                if http:
+                    url = f"http://{ip}/{word}"
+                    request_response(url)
+                if https:
+                    url = f"https://{ip}/{word}"
+                    request_response(url)
+    except FileNotFoundError:
+        print("\033[1;31m" + "\n[!] " + "\033[0m" + "File not found.")
